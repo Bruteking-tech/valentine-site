@@ -97,8 +97,8 @@ button{
 
   <p id="type"></p>
 
-  <button onclick="yes()">Yes 💕</button>
-  <button onclick="yes()">Of course 💖</button>
+  <button id="yesBtn">Yes 💕</button>
+  <button disabled>Of course 💖</button>
 
   <p id="final" class="hidden">
     You just made me the happiest person alive 🥹❤️<br><br>
@@ -107,43 +107,87 @@ button{
   </p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
+/* Typing love letter */
 const text = `Dear Raj Nandani,
 Since 4 September 2024, my life changed in the most beautiful way.
 Every smile, every moment feels better with you.
 I don’t want just one Valentine’s Day…
-I want every tomorrow with you.
-every moment i just think about you .
-my love my cutuuu my puchkuuu meri shonaaa meri janu 
-i just wanna spend every second with you ♾️❤️`;
+I want every tomorrow with you. ♾️❤️`;
 
-let i=0;
-function typeText(){
-  if(i<text.length){
+let i = 0;
+function typeText() {
+  if (i < text.length) {
     document.getElementById("type").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeText,40);
+    setTimeout(typeText, 40);
   }
 }
 typeText();
 
-function yes(){
-  document.getElementById("type").classList.add("hidden");
-  document.getElementById("final").classList.remove("hidden");
-}
+/* Infinite Love Counter */
+const startDate = new Date("2024-09-04T00:00:00");
+setInterval(() => {
+  const now = new Date();
+  const diff = now - startDate;
 
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(15+Math.random()*20)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},500);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const mins = Math.floor((diff / (1000 * 60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("counter").innerHTML =
+    `❤️ Together for ${days} days ${hours}h ${mins}m ${secs}s ♾️`;
+}, 1000);
+
+/* YES BUTTON MAGIC */
+document.getElementById("yesBtn").addEventListener("click", () => {
+
+  // Confetti
+  confetti({
+    particleCount: 300,
+    spread: 120,
+    origin: { y: 0.6 }
+  });
+
+  // Fireworks
+  let duration = 2000;
+  let end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 6,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 }
+    });
+    confetti({
+      particleCount: 6,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+
+  // Final screen
+  document.querySelector(".card").innerHTML = `
+    <h1>Raj Nandani & Aryan</h1>
+    <h2>Forever ♾️❤️</h2>
+    <p style="font-size:18px;margin-top:20px;">
+      From 4 September 2024 — now & forever 💖
+    </p>
+  `;
+});
 </script>
 
 </body>
 
 </html>
+
 
