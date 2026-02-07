@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raj Nandani ❤️ Aryan</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background: linear-gradient(135deg,#ff7aa2,#ffd1dc);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+  color:white;
+}
+
+.card{
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(16px);
+  border-radius:28px;
+  padding:30px;
+  width:90%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,0.3);
+  z-index:2;
+}
+
+h1{margin:5px 0;font-size:2rem;}
+h2{margin:0;font-weight:400;font-size:1.1rem;}
+
+.photos{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:15px 0;
+}
+.photos img{
+  width:45%;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+#type{
+  min-height:120px;
+  line-height:1.6;
+  font-size:1rem;
+}
+
+button{
+  margin-top:15px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  background:white;
+  color:#ff4d6d;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.hidden{display:none;}
+
+.heart{
+  position:absolute;
+  color:rgba(255,255,255,0.7);
+  font-size:20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e4b7c7c5a.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Raj Nandani ❤️</h1>
+  <h2>From Aryan</h2>
+
+  <div class="photos">
+    <img src="file:///storage/emulated/0/valentine-site/couple-photo-1.jpg">
+<img src="file:///storage/emulated/0/valentine-site/couple-photo-2.jpg">
+    
+  </div>
+
+  <p id="type"></p>
+
+  <button onclick="yes()">Yes 💕</button>
+  <button onclick="yes()">Of course 💖</button>
+
+  <p id="final" class="hidden">
+    You just made me the happiest person alive 🥹❤️<br><br>
+    Together since <b>4 September 2024</b><br>
+    Now & forever ♾️
+  </p>
+</div>
+
+<script>
+const text = `Dear Raj Nandani,
+Since 4 September 2024, my life changed in the most beautiful way.
+Every smile, every moment feels better with you.
+I don’t want just one Valentine’s Day…
+I want every tomorrow with you. ♾️❤️`;
+
+let i=0;
+function typeText(){
+  if(i<text.length){
+    document.getElementById("type").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText,40);
+  }
+}
+typeText();
+
+function yes(){
+  document.getElementById("type").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+}
+
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(15+Math.random()*20)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+</script>
+
+</body>
+</html>
