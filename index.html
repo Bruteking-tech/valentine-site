@@ -9,29 +9,27 @@
 body{
   margin:0;
   height:100vh;
-  background: linear-gradient(135deg,#ff7aa2,#ffd1dc);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:'Segoe UI',sans-serif;
   overflow:hidden;
-  color:white;
 }
 
 .card{
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(16px);
-  border-radius:28px;
-  padding:30px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(12px);
+  border-radius:25px;
+  padding:25px;
   width:90%;
-  max-width:420px;
+  max-width:380px;
   text-align:center;
-  box-shadow:0 25px 60px rgba(0,0,0,0.3);
-  z-index:2;
+  box-shadow:0 20px 40px rgba(0,0,0,0.2);
 }
 
-h1{margin:5px 0;font-size:2rem;}
-h2{margin:0;font-weight:400;font-size:1.1rem;}
+h1{color:#fff;margin-bottom:5px}
+h2{color:#fff;font-weight:400;margin-top:0}
 
 .photos{
   display:flex;
@@ -42,247 +40,127 @@ h2{margin:0;font-weight:400;font-size:1.1rem;}
 .photos img{
   width:45%;
   border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 #type{
+  color:#fff;
+  font-size:15px;
+  margin-top:10px;
   min-height:120px;
-  line-height:1.6;
-  font-size:1rem;
+}
+
+#counter{
+  color:#fff;
+  margin:10px 0;
+  font-weight:600;
 }
 
 button{
-  margin-top:15px;
-  padding:12px 25px;
   border:none;
+  padding:12px 22px;
   border-radius:30px;
-  font-size:1rem;
+  font-size:16px;
   font-weight:600;
   cursor:pointer;
-  background:white;
-  color:#ff4d6d;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  margin:5px;
+  background:#fff;
+  color:#ff4b6e;
 }
 
-.hidden{display:none;}
+.hidden{display:none}
 
+#final{
+  color:#fff;
+  font-size:22px;
+  text-align:center;
+}
+
+/* hearts */
 .heart{
-  position:absolute;
-  color:rgba(255,255,255,0.7);
-  font-size:20px;
+  position:fixed;
+  bottom:-20px;
   animation: floatUp 6s linear infinite;
 }
-
 @keyframes floatUp{
-  from{transform:translateY(100vh);opacity:1;}
-  to{transform:translateY(-10vh);opacity:0;}
-}/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.8;
-}
-
-@keyframes floatUp {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
+  to{
+    transform: translateY(-110vh);
+    opacity:0;
   }
 }
-
-/* Replay text */
-#replay {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Photo fade */
-.photos img {
-  transition: opacity 1.5s ease;
-    }
-  .confetti,
-.heart {
-  pointer-events: none;
-}
-  #type {
-  margin-top: 15px;
-  font-size: 16px;
-  color: #ffffff;   /* WHITE TEXT */
-  text-align: center;
-  line-height: 1.6;
-  min-height: 80px;
-  z-index: 6;
-  position: relative;
-    }
 </style>
-
 </head>
 
 <body>
-
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e4b7c7c5a.mp3" type="audio/mpeg">
-</audio>
 
 <div class="card">
   <h1>Raj Nandani ❤️</h1>
   <h2>From Aryan</h2>
 
   <div class="photos">
-    <img src="couple-photo-1.jpg" class="photo">
-<img src="couple-photo-2.jpg" class="photo">
+    <img src="couple-photo-1.jpg">
+    <img src="couple-photo-2.jpg">
   </div>
 
   <p id="type"></p>
-  <p id="replay" class="hidden">Tap anywhere to relive our moment ♾️❤️</p>
-   
-  <button onclick="yes()">Yes 💕</button>
-  <button disabled>Of course 💖</button>
+  <p id="counter"></p>
 
-  <p id="final" class="hidden">
-    You just made me the happiest person alive 🥹❤️<br><br>
-    Together since <b>4 September 2024</b><br>
-    Now & forever ♾️
-  </p>
+  <button onclick="yes()">Yes 💕</button>
+  <button onclick="yes()">Of course 💖</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<p id="final" class="hidden">
+Raj Nandani & Aryan<br>
+Forever ♾️❤️
+</p>
 
 <script>
-/* Typing love letter */
+/* typing */
 const text = `Dear Raj Nandani,
-Since 4 September 2024, my life changed in the most beautiful way.
-Every smile, every moment feels better with you.
-I don’t want just one Valentine’s Day…
-I want every tomorrow with you. ♾️❤️`;
+Since 4 September 2024, my life changed beautifully.
+Every smile feels warmer with you.
+I don’t want one Valentine’s Day —
+I want forever with you. ♾️❤️`;
 
-let i = 0;
-function typeText() {
-  if (i < text.length) {
-    document.getElementById("type").innerHTML += text.charAt(i);
+let i=0;
+function typeText(){
+  if(i<text.length){
+    document.getElementById("type").innerHTML+=text[i];
     i++;
-    setTimeout(typeText, 40);
+    setTimeout(typeText,40);
   }
 }
 typeText();
 
-/* Infinite Love Counter */
-const startDate = new Date("2024-09-04T00:00:00");
-setInterval(() => {
+/* counter */
+const start = new Date("2024-09-04");
+setInterval(()=>{
   const now = new Date();
-  const diff = now - startDate;
+  const days = Math.floor((now-start)/(1000*60*60*24));
+  document.getElementById("counter").innerText =
+  `❤️ ${days} days together`;
+},1000);
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const mins = Math.floor((diff / (1000 * 60)) % 60);
-  const secs = Math.floor((diff / 1000) % 60);
+/* music */
+const music = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_1e2c9c6c91.mp3");
+music.loop=true;
+music.volume=0.4;
 
-  document.getElementById("counter").innerHTML =
-    `❤️ Together for ${days} days ${hours}h ${mins}m ${secs}s ♾️`;
-}, 1000);
-
-/* YES BUTTON MAGIC */
-document.getElementById("yesBtn").addEventListener("click", () => {
-
-  // Confetti
-  confetti({
-    particleCount: 300,
-    spread: 120,
-    origin: { y: 0.6 }
-  });
-
-  // Fireworks
-  let duration = 2000;
-  let end = Date.now() + duration;
-
-  (function frame() {
-    confetti({
-      particleCount: 6,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0 }
-    });
-    confetti({
-      particleCount: 6,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1 }
-    });
-
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  })();
-
-  // Final screen
-  document.querySelector(".card").innerHTML = `
-    <h1>Raj Nandani & Aryan</h1>
-    <h2>Forever ♾️❤️</h2>
-    <p style="font-size:18px;margin-top:20px;">
-      From 4 September 2024 — now & forever 💖
-    </p>
-  `;
-});
-  /* Floating hearts generator */
-function startHearts() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (16 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 6000);
-  }, 400);
-}
-
-/* Romantic music (plays only after YES) */
-const music = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_5f8f7bdb7d.mp3");
-music.loop = true;
-
-function yes() {
-  music.volume = 0.4;
-  music.muted = false; music.play().catch(() => {});
-
-  document.querySelector(".card").style.display = "none";
+/* yes action */
+function yes(){
+  document.querySelector(".card").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
-
-  for (let i = 0; i < 200; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.animationDuration = 2 + Math.random() * 3 + "s";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 5000);
-  }
+  music.play().catch(()=>{});
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=16+Math.random()*20+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },400);
 }
-  
-
-  // Show replay hint
-  setTimeout(() => {
-    document.getElementById("replay").classList.remove("hidden");
-  }, 2500);
-});
 </script>
 
 </body>
-
-</html>
-
-
-
-
-
-
+  </html>
