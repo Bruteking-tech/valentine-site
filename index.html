@@ -113,7 +113,6 @@ button{
     }
   
 </style>
- /* Floating hearts */
 
 </head>
 
@@ -135,7 +134,7 @@ button{
   <p id="type"></p>
   <p id="replay" class="hidden">Tap anywhere to relive our moment ♾️❤️</p>
    
-  <button id="yesBtn">Yes 💕</button>
+  <button onclick="yes()">Yes 💕</button>
   <button disabled>Of course 💖</button>
 
   <p id="final" class="hidden">
@@ -240,24 +239,23 @@ function startHearts() {
 const music = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_5f8f7bdb7d.mp3");
 music.loop = true;
 
-/* Replay */
-document.body.addEventListener("click", () => {
-  if (!document.getElementById("replay").classList.contains("hidden")) {
-    location.reload();
+function yes() {
+  music.volume = 0.4;
+  music.muted = false; music.play().catch(() => {});
+
+  document.querySelector(".card").style.display = "none";
+  document.getElementById("final").classList.remove("hidden");
+
+  for (let i = 0; i < 200; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = 2 + Math.random() * 3 + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5000);
   }
-});
-
-/* ENHANCE YES BUTTON */
-document.getElementById("yesBtn").addEventListener("click", () => {
-
-  // Fade photos
-  document.querySelectorAll(".photos img").forEach(img => {
-    img.style.opacity = 0;
-  });
-
-  // Start hearts + music
-  startHearts();
-  music.play();
+}
+  
 
   // Show replay hint
   setTimeout(() => {
@@ -269,6 +267,7 @@ document.getElementById("yesBtn").addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
